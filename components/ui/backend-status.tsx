@@ -22,7 +22,7 @@ export function BackendStatus({ className }: BackendStatusProps) {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
       
-      const response = await fetch('http://localhost:4000/health', {
+      const response = await fetch('https://ss-dash-be.onrender.com/health', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

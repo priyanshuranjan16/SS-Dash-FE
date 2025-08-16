@@ -39,14 +39,14 @@ export default function LoginPage() {
       
       // Test backend connection first
       try {
-        const healthResponse = await fetch('http://localhost:4000/health')
+        const healthResponse = await fetch('https://ss-dash-be.onrender.com/health')
         console.log('Backend health check status:', healthResponse.status)
         if (!healthResponse.ok) {
           throw new Error('Backend server is not responding properly')
         }
       } catch (healthError) {
         console.error('Backend health check failed:', healthError)
-        setError('Backend server is not accessible. Please ensure the server is running on localhost:4000.')
+        setError('Backend server is not accessible. Please ensure the server is running on https://ss-dash-be.onrender.com.')
         return
       }
       

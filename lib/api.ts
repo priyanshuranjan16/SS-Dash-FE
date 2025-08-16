@@ -1,11 +1,11 @@
 import { mockApi } from './dummy-data'
 
-const API_BASE_URL = 'http://localhost:4000/api'
+const API_BASE_URL = 'https://ss-dash-be.onrender.com/api'
 
 // Debug function to test backend connectivity
 export const testBackendConnection = async () => {
   try {
-    const response = await fetch('http://localhost:4000/health')
+    const response = await fetch('https://ss-dash-be.onrender.com/health')
     if (response.ok) {
       const data = await response.json()
       console.log('✅ Backend is running:', data)
