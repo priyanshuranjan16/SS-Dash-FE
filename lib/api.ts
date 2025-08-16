@@ -396,7 +396,7 @@ export const api = {
     const token = this.getToken()
     if (token) {
       try {
-        await fetch(`https://ss-dash-be.onrender.com/logout`, {
+        await fetch(`${API_BASE_URL}/auth/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -408,16 +408,16 @@ export const api = {
       }
     }
 
-    // Remove token from cookie and localStorage
-    this.removeToken()
+    // // Remove token from cookie and localStorage
+    // this.removeToken()
     
-    // Clear all potential storage locations
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    sessionStorage.clear()
+    // // Clear all potential storage locations
+    // localStorage.removeItem('token')
+    // localStorage.removeItem('user')
+    // sessionStorage.clear()
     
-    console.log('✅ All tokens and user data cleared from API')
-    return { success: true }
+    // console.log('✅ All tokens and user data cleared from API')
+    // return { success: true }
   },
 
   async getDashboard(): Promise<DashboardResponse> {
