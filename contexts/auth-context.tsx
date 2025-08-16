@@ -155,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    // checkAuth()
+    checkAuth()
   }, [])
 
   const login = async (email: string, password: string, role?: UserRole): Promise<User> => {
