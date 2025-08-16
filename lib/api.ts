@@ -1,6 +1,6 @@
 import { mockApi } from './dummy-data'
 
-const API_BASE_URL = 'https://ss-dash-be.onrender.com/api'
+const API_BASE_URL = 'https://ss-dash-be.onrender.com'
 
 // Debug function to test backend connectivity
 export const testBackendConnection = async () => {
