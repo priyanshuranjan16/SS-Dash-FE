@@ -22,7 +22,7 @@ export function BackendStatus({ className }: BackendStatusProps) {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
       
-      const response = await fetch('https://ss-dash-be.onrender.com/health', {
+      const response = await fetch('https://ss-dash-be.onrender.com', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -40,8 +40,11 @@ export function BackendStatus({ className }: BackendStatusProps) {
     } catch (error) {
       // Silently handle network errors (backend not running)
       // Only log if it's not a network connectivity issue
-      if (error instanceof TypeError && error.message.includes('Failed to fetch') || 
-          error.name === 'AbortError') {
+     
+      if (
+        error instanceof TypeError && (error as { message?: string }).message?.includes('Failed to fetch') ||
+        (error as { name?: string }).name === 'AbortError'
+      ) {
         // This is expected when backend is not running or request times out
         setStatus('offline')
       } else {

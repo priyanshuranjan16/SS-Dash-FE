@@ -5,7 +5,7 @@ const API_BASE_URL = 'https://ss-dash-be.onrender.com/api'
 // Debug function to test backend connectivity
 export const testBackendConnection = async () => {
   try {
-    const response = await fetch('https://ss-dash-be.onrender.com/health')
+    const response = await fetch('https://ss-dash-be.onrender.com')
     if (response.ok) {
       const data = await response.json()
       console.log('✅ Backend is running:', data)
