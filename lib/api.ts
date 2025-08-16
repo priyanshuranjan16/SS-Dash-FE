@@ -1,6 +1,6 @@
 import { mockApi } from './dummy-data'
 
-const API_BASE_URL = 'https://ss-dash-be.onrender.com'
+const API_BASE_URL = 'https://ss-dash-be.onrender.com/api'
 
 // Debug function to test backend connectivity
 export const testBackendConnection = async () => {
@@ -396,7 +396,7 @@ export const api = {
     const token = this.getToken()
     if (token) {
       try {
-        await fetch(`${API_BASE_URL}/logout`, {
+        await fetch(`https://ss-dash-be.onrender.com/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
