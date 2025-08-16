@@ -81,6 +81,7 @@ export function AuthForm({ type, onSubmit, isLoading }: AuthFormProps) {
     <Form {...form}>
       <motion.form 
         onSubmit={(e) => {
+           e.preventDefault();
           console.log('Form submit event triggered') // Debug log
           form.handleSubmit((values) => {
             console.log('Form validation passed, calling onSubmit with:', values) // Debug log
