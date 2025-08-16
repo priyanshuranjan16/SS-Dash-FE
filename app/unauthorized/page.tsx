@@ -1,15 +1,23 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Home, Shield, Lock, ArrowLeft, Users, UserCheck, Shield as AdminIcon } from 'lucide-react'
-import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { Suspense, useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Home, Shield, Lock, ArrowLeft, Users, UserCheck, Shield as AdminIcon } from "lucide-react"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 export default function UnauthorizedPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <UnauthorizedContent />
+    </Suspense>
+  )
+}
+
+function UnauthorizedContent() {
   const searchParams = useSearchParams()
   const [mounted, setMounted] = useState(false)
 
@@ -17,17 +25,17 @@ export default function UnauthorizedPage() {
     setMounted(true)
   }, [])
 
-  const from = searchParams.get('from') || 'unknown page'
-  const requiredRoles = searchParams.get('requiredRoles')?.split(',') || []
-  const userRole = searchParams.get('userRole') || 'unknown'
+  const from = searchParams.get("from") || "unknown page"
+  const requiredRoles = searchParams.get("requiredRoles")?.split(",") || []
+  const userRole = searchParams.get("userRole") || "unknown"
 
   const getRoleIcon = (role: string) => {
     switch (role) {
-      case 'admin':
+      case "admin":
         return <AdminIcon className="w-4 h-4" />
-      case 'teacher':
+      case "teacher":
         return <UserCheck className="w-4 h-4" />
-      case 'student':
+      case "student":
         return <Users className="w-4 h-4" />
       default:
         return <Shield className="w-4 h-4" />
@@ -36,27 +44,27 @@ export default function UnauthorizedPage() {
 
   const getRoleColor = (role: string) => {
     switch (role) {
-      case 'admin':
-        return 'bg-red-500'
-      case 'teacher':
-        return 'bg-blue-500'
-      case 'student':
-        return 'bg-green-500'
+      case "admin":
+        return "bg-red-500"
+      case "teacher":
+        return "bg-blue-500"
+      case "student":
+        return "bg-green-500"
       default:
-        return 'bg-gray-500'
+        return "bg-gray-500"
     }
   }
 
   const getDashboardPath = (role: string) => {
     switch (role) {
-      case 'admin':
-        return '/admin/dashboard'
-      case 'teacher':
-        return '/teacher/dashboard'
-      case 'student':
-        return '/dashboard'
+      case "admin":
+        return "/admin/dashboard"
+      case "teacher":
+        return "/teacher/dashboard"
+      case "student":
+        return "/dashboard"
       default:
-        return '/dashboard'
+        return "/dashboard"
     }
   }
 
@@ -164,7 +172,7 @@ export default function UnauthorizedPage() {
           className="mt-6 text-center"
         >
           <p className="text-sm text-muted-foreground">
-            Need higher permissions? Contact your administrator or{' '}
+            Need higher permissions? Contact your administrator or{" "}
             <Link href="/profile" className="text-primary hover:underline">
               check your profile
             </Link>
