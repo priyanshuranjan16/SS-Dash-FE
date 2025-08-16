@@ -79,20 +79,16 @@ export function AuthForm({ type, onSubmit, isLoading }: AuthFormProps) {
 
   return (
     <Form {...form}>
-      <motion.form 
-        onSubmit={(e) => {
-           e.preventDefault();
-          console.log('Form submit event triggered') // Debug log
-          form.handleSubmit((values) => {
-            console.log('Form validation passed, calling onSubmit with:', values) // Debug log
-            return onSubmit(values)
-          })(e)
-        }} 
-        className="space-y-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
+     <motion.form
+  onSubmit={form.handleSubmit((values) => {
+    console.log('Form validation passed, calling onSubmit with:', values);
+    return onSubmit(values);
+  })}
+  className="space-y-6"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.3 }}
+>
         {type === "signup" && (
           <AuthTransition>
             <FormField
