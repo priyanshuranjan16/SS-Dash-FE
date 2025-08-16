@@ -22,7 +22,7 @@ export default function SignupPage() {
     setMounted(true)
   }, [])
 
-  async function onSubmit(values: { name: string; email: string; password: string; role: "student" | "teacher" | "admin" }) {
+  async function onSubmit(values: { name?: string; email: string; password: string; role: "student" | "teacher" | "admin" }): Promise<void> {
     console.log('Signup onSubmit called with values:', values)
     
     try {
@@ -44,6 +44,12 @@ export default function SignupPage() {
         return
       }
       
+      // Validate that name is provided for signup
+      if (!values.name || values.name.trim().length < 2) {
+        setError('Name is required and must be at least 2 characters long.')
+        return
+      }
+
       // Call your backend API using the api utility
       console.log('Calling api.register...')
       const data = await api.register({
