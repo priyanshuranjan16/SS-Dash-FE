@@ -74,6 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             
             if (response.success) {
               const user: User = {
+                //@ts-ignore
                 id: response.user.id || response.user._id || '1', // Handle both id and _id
                 email: response.user.email,
                 role: response.user.role as UserRole,
@@ -171,6 +172,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         
         // Convert API user to our User interface
         const user: User = {
+          // @ts-ignore
           id: response.user.id || response.user._id, // Handle both id and _id
           email: response.user.email,
           role: response.user.role as UserRole,
